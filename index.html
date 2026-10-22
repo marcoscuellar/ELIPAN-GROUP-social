@@ -52,6 +52,11 @@ body{margin:0}
 @keyframes scrIn{to{color:var(--ink)}}
 @keyframes scr1{0%{content:"$"}10%{content:"!"}20%{content:"*"}30%{content:"3"}40%{content:"4"}50%{content:"@"}60%{content:"Ø"}70%{content:"Z"}80%{content:"%"}90%{content:"#"}100%{content:""}}@keyframes scr2{0%{content:"!"}10%{content:"Ø"}20%{content:"$"}30%{content:"="}40%{content:"4"}50%{content:"@"}60%{content:"*"}70%{content:"/"}80%{content:"3"}90%{content:"%"}100%{content:""}}@keyframes scr3{0%{content:"Z"}10%{content:"K"}20%{content:"4"}30%{content:"7"}40%{content:"@"}50%{content:"Ø"}60%{content:"3"}70%{content:"!"}80%{content:"%"}90%{content:"?"}100%{content:""}}
 @media (prefers-reduced-motion: reduce){.m .scr{color:var(--ink);animation:none}.m .scr::before{display:none}}
+.m .brandbar{border-top:1px solid var(--ink);padding:12px 0;display:flex;align-items:center;gap:12px}
+.m .brandbar .chips{display:flex;flex-wrap:wrap;gap:8px;min-width:0}
+.m .brandbar .obtn{flex:0 0 auto;white-space:nowrap}
+@media (max-width:720px){.m .brandbar{flex-direction:column;align-items:stretch;gap:8px;padding:10px 0}.m .brandbar .chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity;padding-bottom:2px;-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent)}.m .brandbar .chips::-webkit-scrollbar{display:none}.m .brandbar .obtn{scroll-snap-align:start;min-height:40px;padding:0 12px;font-size:11px;gap:8px!important}}
+@media (max-width:720px){.m .wrow{grid-template-columns:minmax(0,1fr)!important;gap:8px!important}.m .wrow .wmeta{flex-direction:row!important;gap:12px!important}}
 </style>
 <style>.m.played .scr{animation:none!important;color:var(--ink)!important}.m.played .scr::before{display:none!important}body{margin:0}</style></head><body>
 <template id="tpl">
@@ -127,7 +132,7 @@ body{margin:0}
 </div>
 
 <div style="padding: 30px 0 22px; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center;">
-<h1 class="h" aria-label="ELIPAN Syntax and Snax" style="display: flex; flex-direction: column; align-items: center; gap: 0.06em; line-height: 0.9; letter-spacing: -0.035em;"><span aria-hidden="true" style="font-size: clamp(52px, 9.5vw, 128px);"><span class="scr s3" style="--d: 0.46s;">E</span><span class="scr s2" style="--d: 0.63s;">L</span><span class="scr s3" style="--d: 0.60s;">I</span><span class="scr s3" style="--d: 0.61s;">P</span><span class="scr s3" style="--d: 0.75s;">A</span><span class="scr s1" style="--d: 0.90s;">N</span></span><span aria-hidden="true" style="font-size: clamp(52px, 9.5vw, 128px);"><span class="scr s1" style="--d: 0.71s;">S</span><span class="scr s3" style="--d: 0.69s;">Y</span><span class="scr s3" style="--d: 0.90s;">N</span><span class="scr s2" style="--d: 1.06s;">T</span><span class="scr s3" style="--d: 1.04s;">A</span><span class="scr s3" style="--d: 1.11s;">X</span> <span class="scr s3" style="--d: 1.02s;">&amp;</span> <span class="scr s1" style="--d: 1.11s;">S</span><span class="scr s1" style="--d: 1.21s;">N</span><span class="scr s2" style="--d: 1.38s;">A</span><span class="scr s3" style="--d: 1.38s;">X</span></span></h1>
+<h1 class="h" aria-label="ELIPAN Syntax and Snax" style="display: flex; flex-direction: column; align-items: center; gap: 0.06em; line-height: 0.9; letter-spacing: -0.035em;"><span aria-hidden="true" style="font-size: clamp(30px, 9.5vw, 128px); white-space: nowrap;"><span class="scr s3" style="--d: 0.46s;">E</span><span class="scr s2" style="--d: 0.63s;">L</span><span class="scr s3" style="--d: 0.60s;">I</span><span class="scr s3" style="--d: 0.61s;">P</span><span class="scr s3" style="--d: 0.75s;">A</span><span class="scr s1" style="--d: 0.90s;">N</span></span><span aria-hidden="true" style="font-size: clamp(30px, 9.5vw, 128px); white-space: nowrap;"><span class="scr s1" style="--d: 0.71s;">S</span><span class="scr s3" style="--d: 0.69s;">Y</span><span class="scr s3" style="--d: 0.90s;">N</span><span class="scr s2" style="--d: 1.06s;">T</span><span class="scr s3" style="--d: 1.04s;">A</span><span class="scr s3" style="--d: 1.11s;">X</span> <span class="scr s3" style="--d: 1.02s;">&amp;</span> <span class="scr s1" style="--d: 1.11s;">S</span><span class="scr s1" style="--d: 1.21s;">N</span><span class="scr s2" style="--d: 1.38s;">A</span><span class="scr s3" style="--d: 1.38s;">X</span></span></h1>
 <span class="lbl">TODAY’S BOARD · CREDIBLE STORIES FROM THE LAST 24 HOURS ONLY, MATCHED TO A BRAND · BRIEF FILED 4:57 AM</span>
 <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 6px;">
 <button type="button" class="obtn" onClick="{{startBlank}}">START BLANK</button>
@@ -135,12 +140,14 @@ body{margin:0}
 </div>
 </div>
 
-<div style="border-top: 1px solid var(--ink); padding: 12px 0; display: flex; flex-wrap: wrap; align-items: center; gap: 10px;">
-<span class="lbl" style="color: var(--ink); margin-right: 6px;">BRANDS</span>
+<div class="brandbar">
+<span class="lbl" style="color: var(--ink); white-space: nowrap;">BRANDS</span>
+<div class="chips" role="group" aria-label="Filter the board by brand">
 <button type="button" class="obtn" onClick="{{allBrands}}" aria-pressed="{{allBrandsStr}}" style="{{allBrandsStyle}}">ALL BRANDS</button>
 <sc-for list="{{brandRows}}" as="r" hint-placeholder-count="6">
 <button type="button" class="obtn" onClick="{{r.go}}" disabled="{{r.soon}}" aria-pressed="{{r.onStr}}" style="{{r.chipStyle}}"><span aria-hidden="true" style="{{r.dot}}"></span><span style="font-weight: 700;">{{r.name}}</span><span style="color: var(--muted);">{{r.posted}}/{{r.goal}}</span></button>
 </sc-for>
+</div>
 </div>
 <div style="border-top: 1px solid var(--ink); border-bottom: 4px double var(--ink); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
 <sc-for list="{{kpis}}" as="k" hint-placeholder-count="4">
@@ -216,8 +223,8 @@ body{margin:0}
 </div>
 <sc-if value="{{noFeed}}" hint-placeholder-val="{{false}}"><p style="margin: 0; padding: 18px 0; color: var(--muted);">No AI or tech news in the last 24 hours yet.</p></sc-if>
 <sc-for list="{{feedRows}}" as="w" hint-placeholder-count="8">
-<div style="display: grid; grid-template-columns: 92px minmax(0, 1fr) minmax(180px, 240px); gap: 6px 24px; align-items: start; padding: 16px 0; border-bottom: 1px solid var(--line2);">
-<div style="display: flex; flex-direction: column; gap: 6px;"><span class="lbl" style="color: var(--ink);">{{w.age}}</span><span class="lbl">{{w.cat}}</span></div>
+<div class="wrow" style="display: grid; grid-template-columns: 92px minmax(0, 1fr) minmax(180px, 240px); gap: 6px 24px; align-items: start; padding: 16px 0; border-bottom: 1px solid var(--line2);">
+<div class="wmeta" style="display: flex; flex-direction: column; gap: 6px;"><span class="lbl" style="color: var(--ink);">{{w.age}}</span><span class="lbl">{{w.cat}}</span></div>
 <div style="min-width: 0; display: flex; flex-direction: column; gap: 6px;">
 <a href="{{w.url}}" target="_blank" rel="noopener" style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 18px; line-height: 1.3; text-decoration: none;">{{w.title}}</a>
 <span style="font-size: 14px; line-height: 1.5; color: var(--ink2);">{{w.sum}}</span>
