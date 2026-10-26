@@ -896,7 +896,7 @@ class Component extends DCLogic {
       };
     });
     var BB = s.boardBrand || null;
-    var homeTopics = TOPICS.filter(function (t) { return !BB || t.brand === BB; }).map(function (t) {
+    var homeTopics = TOPICS.filter(function (t) { return !BB || t.brand === BB; }).sort(function (a, b) { return (a.ours ? 1 : 0) - (b.ours ? 1 : 0); }).map(function (t) {
       var tt = tone(BR[t.brand].c); var dA = hoursAgo(t);
       return {
         title: t.title, why: t.why, source: t.source, url: t.url, brandUpper: BR[t.brand].name.toUpperCase(),
@@ -906,7 +906,7 @@ class Component extends DCLogic {
         use: function () { set({ topic: t.id, pillar: t.pillar, brand: t.brand, step: 'write', draft: t.draft, copyOk: false, designOk: false, headline: null, blank: false, scheduledNow: false }); }
       };
     });
-    homeTopics.sort(function (a, b) { return (b.ours ? 1 : 0) - (a.ours ? 1 : 0) || a.dA - b.dA; });
+    homeTopics.sort(function (a, b) { return (a.ours ? 1 : 0) - (b.ours ? 1 : 0) || a.dA - b.dA; });
     var todayFull = (fmtD({ weekday: 'long' }) + ', ' + fmtD({ month: 'long', day: 'numeric' }) + ', ' + fmtD({ year: 'numeric' })).toUpperCase();
     var issueNo = Math.max(1, daysAgo('Oct 15') + 1);
     var staleCount = 0;
