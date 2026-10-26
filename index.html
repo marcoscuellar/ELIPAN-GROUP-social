@@ -59,6 +59,8 @@ body{margin:0}
 .m .bbitem[aria-checked="true"]{background:var(--raised)}
 .m .bbitem:disabled{opacity:.4;cursor:not-allowed}
 @media (max-width:720px){.m .bbmenu{left:0;right:auto}.m .wrow{grid-template-columns:minmax(0,1fr)!important;gap:8px!important}.m .wrow .wmeta{flex-direction:row!important;gap:12px!important}.m .hdrbtns .obtn{padding:0 12px}}
+.m .secgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:720px){.m .secgrid{grid-template-columns:minmax(0,1fr)}}
 </style>
 <style>.m.played .scr{animation:none!important;color:var(--ink)!important}.m.played .scr::before{display:none!important}body{margin:0}</style></head><body>
 <template id="tpl">
@@ -180,7 +182,7 @@ body{margin:0}
 </div>
 </article>
 </sc-if>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0 28px;">
+<div class="secgrid" style="display: grid; gap: 0 28px;">
 <sc-for list="{{seconds}}" as="t" hint-placeholder-count="2">
 <article style="display: flex; flex-direction: column; gap: 10px; padding: 4px 0 22px;">
 <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px;"><span aria-hidden="true" style="{{t.dot}}"></span><span class="lbl" style="color: var(--ink);">{{t.brandUpper}}</span><span class="lbl" style="{{t.ageStyle}}">· {{t.age}}</span></div>
@@ -903,6 +905,7 @@ class Component extends DCLogic {
       };
     });
     homeTopics.sort(function (a, b) { return (a.ours ? 1 : 0) - (b.ours ? 1 : 0) || a.dA - b.dA; });
+    var nSec = homeTopics.length >= 9 ? 4 : 2;
     var todayFull = (fmtD({ weekday: 'long' }) + ', ' + fmtD({ month: 'long', day: 'numeric' }) + ', ' + fmtD({ year: 'numeric' })).toUpperCase();
     var issueNo = Math.max(1, daysAgo('Oct 15') + 1);
     var staleCount = 0;
@@ -956,7 +959,7 @@ class Component extends DCLogic {
       bbTotal: brandRows.filter(function (r) { return !r.soon; }).reduce(function (a, r) { return a + r.posted; }, 0) + '/' + brandRows.filter(function (r) { return !r.soon; }).reduce(function (a, r) { return a + r.goal; }, 0), allBrandsStr: s.boardBrand ? 'false' : 'true',
       allBrandsStyle: s.boardBrand ? '' : 'background: var(--swap); color: var(--swap-ink); border-color: var(--swap);',
       boardBrandName: s.boardBrand ? BR[s.boardBrand].name : '',
-      kpis: kpis, todayFull: todayFull, issueNo: issueNo, lead: homeTopics[0] || {}, hasLead: homeTopics.length > 0, noLead: homeTopics.length === 0, seconds: homeTopics.slice(1, 3), mores: homeTopics.slice(3), noMores: homeTopics.length < 4,
+      kpis: kpis, todayFull: todayFull, issueNo: issueNo, lead: homeTopics[0] || {}, hasLead: homeTopics.length > 0, noLead: homeTopics.length === 0, seconds: homeTopics.slice(1, 1 + nSec), mores: homeTopics.slice(1 + nSec), noMores: homeTopics.length <= 1 + nSec,
       ticker: (function () { var r = FEED.map(function (t) { var b = t.brand ? BR[t.brand] : null; return { title: t.title, brandUpper: b ? b.name.toUpperCase() : t.cat, age: ageLabel(t), ageStyle: hoursAgo(t) < 3 ? 'color: var(--bad);' : '', dot: 'width: 9px; height: 9px; border-radius: 50%; display: inline-block; background: ' + (b ? tone(b.c)[1] : 'var(--muted)') + ';' }; }); return r.concat(r); })(), updatedAt: fmtD({ hour: 'numeric', minute: '2-digit' }).toUpperCase() + ' CT', brandRows: brandRows, homeTopics: homeTopics, postedList: postedList, noPosted: postedList.length === 0,
       justPosted: !!s.justPosted,
       markPosted: function () { try { navigator.clipboard && navigator.clipboard.writeText(draft); } catch (e) {} set({ justPosted: true, posted: [{ brand: bid, channel: channel, pillar: pillar, xp: xpNow, title: (headline || draft.split('\n')[0] || 'New post'), ts: Date.now() }].concat(s.posted || []) }); },
