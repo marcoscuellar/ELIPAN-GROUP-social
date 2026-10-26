@@ -1102,6 +1102,9 @@ class Component extends DCLogic {
     window.scrollTo(0,y);
   };
   __render();
-  fetch('./news.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).then(function(d){ if(d&&d.feed&&d.feed.length){ window.__NEWS=d; __render(); } }).catch(function(){});
+  (function(){ function get(u){ return fetch(u,{cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).catch(function(){return null;}); }
+    Promise.all([get('https://elipan-social-news.vercel.app/news.json'), get('./news.json')]).then(function(rs){
+      var best=null; rs.forEach(function(d){ if(d&&d.feed&&d.feed.length&&(!best||String(d.updated)>String(best.updated))) best=d; });
+      if(best){ window.__NEWS=best; __render(); } }); })();
 })();
 </script></body></html>
