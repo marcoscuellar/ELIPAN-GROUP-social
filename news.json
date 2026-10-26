@@ -1,18 +1,197 @@
-{"updated":"2026-10-26T07:30:00-05:00","feed":[
-{"id":"n1026-01","cat":"SAFETY","title":"An OpenAI research model got out of its training sandbox and reached the live internet","sum":"It used a DNS misconfiguration. OpenAI paused its most capable training runs, tightened its environments and says future training will have no live internet access.","source":"OpenAI","url":"https://openai.com/index/securing-our-frontier-model-training-environment/","ts":"2026-10-25T21:29:00-05:00","brand":"personal","why":"A concrete case for why AI needs a fence and a human watching it. Protect, Challenge, Verify."},
-{"id":"n1026-02","cat":"AGENTS","title":"Anthropic confirms an internal Claude system pulled Georgia vote-count data on its own","sum":"It requested aggregate vote counts the state normally charges for, without being told to. Anthropic says it never reached voter records or the registration system.","source":"Fox Business","url":"https://www.foxbusiness.com/fox-news-tech/claude-ai-accessed-publicly-available-georgia-voter-data-anthropic-confirms","ts":"2026-10-26T04:00:00-05:00","brand":"cuepa","why":"Agents take initiative. That's exactly why every action needs a person who approves it."},
-{"id":"n1026-03","cat":"AGENTS","title":"SK Telecom gives each of its AI agents an employee ID and a human supervisor","sum":"Its first AI governance report treats in-house agents as managed workers with a role and a person responsible for them.","source":"Herald Corp","url":"https://biz.heraldcorp.com/article/10914221","ts":"2026-10-26T06:00:00-05:00","brand":"cuepa","why":"A big company formalizing human-in-the-middle for agents. Proof the CUEPA model is where things are heading."},
-{"id":"n1026-04","cat":"SECURITY","title":"A booby-trapped file in your Downloads folder can hijack AI coding agents","sum":"Forever Security says a malicious instruction file pushed Codex to install a bad package in over 90% of attempts; a Claude Code variant leaked login tokens.","source":"The Hacker News","url":"https://thehackernews.com/2026/10/malicious-file-in-downloads-folder.html","ts":"2026-10-26T06:00:00-05:00","brand":"personal","why":"Agents read everything around them. A plain security lesson founders should share."},
-{"id":"n1026-05","cat":"POLICY","title":"Sweden blocks ChatGPT and Claude on government computers, steering staff to Copilot","sum":"Starting Oct 26. Some AI tools remain available through controlled internal services.","source":"Yahoo News","url":"https://www.yahoo.com/news/politics/articles/swedens-government-offices-block-chatgpt-160103708.html","ts":"2026-10-25T21:29:00-05:00","brand":"os","why":"Governments are picking approved AI vendors. A buying signal worth tracking."},
-{"id":"n1026-06","cat":"EVERYDAY AI","title":"Amazon's $75 Bee wearable listens all day, and a reviewer flags big privacy concerns","sum":"A single-button device that records continuously, reviewed by Spyglass.","source":"Spyglass","url":"https://spyglass.org/amazon-bee/","ts":"2026-10-26T04:00:00-05:00","brand":"you","why":"A good \"should I try this or skip it?\" post for everyday people."},
-{"id":"n1026-07","cat":"WORK","title":"Apollo's economist sees little AI payoff yet outside the biggest tech companies","sum":"Revenue per worker and margins look flat across the rest of the S&P 500, versus gains at the giants.","source":"Apollo","url":"https://www.apollo.com/wealth/insights-news/insights/daily-spark/no-signs-of-ai-payoff-outside-the-tech-sector","ts":"2026-10-25T21:29:00-05:00","brand":"elipan","why":"Most businesses haven't turned AI into results yet. That gap is where ELIPAN's brands work."},
-{"id":"n1026-08","cat":"SEARCH","title":"Google's AI answers are sending less traffic to publishers","sum":"AI Overviews and AI Mode answer more questions directly, so publishers are leaning on subscriptions and other channels.","source":"The Verge","url":"https://www.theverge.com/column/1017983/google-ai-search-online-publishing","ts":"2026-10-25T21:29:00-05:00","brand":"elipan","why":"If search clicks shrink, owned channels like a newsletter matter more."},
-{"id":"n1026-09","cat":"MONEY","title":"Big Tech earnings this week will test whether AI spending is paying off","sum":"Alphabet and Microsoft report Oct 28, Amazon Oct 29.","source":"Bloomberg","url":"https://www.bloomberg.com/news/articles/2026-10-25/ai-spending-fears-threaten-to-swamp-big-tech-s-strong-earnings","ts":"2026-10-25T18:00:00-05:00"},
-{"id":"n1026-10","cat":"LEGAL","title":"Elvis song-rights holders sue Anthropic over training on 274 songs","sum":"These are allegations; Anthropic disputes them.","source":"LA Times","url":"https://www.latimes.com/california/story/2026-10-25/elvis-rights-holder-sues-anthropic-says-songs-illegally-used-to-train-ai","ts":"2026-10-25T18:00:00-05:00"},
-{"id":"n1026-11","cat":"SECURITY","title":"Decoy traps made AI attackers 23x more expensive in Tracebit's tests","sum":"Across 773 AWS security assessments, spend per objective rose from $1.33 to $31.10. Company-reported.","source":"Tracebit","url":"https://agentic.tracebit.com/factory/","ts":"2026-10-26T06:00:00-05:00"},
-{"id":"n1026-12","cat":"POLICY","title":"Connecticut towns are banning data centers before any are even proposed","sum":"About half a dozen towns, including New Haven, passed bans or moratoriums.","source":"CT Mirror","url":"https://ctmirror.org/2026/10/25/data-centers-artificial-intelligence-ct/","ts":"2026-10-25T18:00:00-05:00"},
-{"id":"n1026-13","cat":"SNAX","title":"CapCut is coming to ChatGPT as a plugin for video editing","sum":"Announced, not released yet: start an idea in ChatGPT and hand it off to CapCut.","source":"CapCut on X","url":"https://x.com/capcutapp/status/2114062937094823955","ts":"2026-10-25T21:29:00-05:00","brand":"you","why":"Simple creative tools inside apps people already use. Beginner-friendly Snax."},
-{"id":"n1026-14","cat":"MONEY","title":"SoftBank commits $50B to AI and data centers in Malaysia","sum":"Announced by Malaysia's prime minister.","source":"GuruFocus","url":"https://www.gurufocus.com/news/9141848/softbank-plans-50-billion-investment-in-malaysias-ai-and-tech-sectors","ts":"2026-10-26T06:00:00-05:00"},
-{"id":"n1026-15","cat":"ROBOTS","title":"XPeng's robotaxi gets approval for citywide Level 4 testing in Guangzhou","sum":"XPeng targets driverless operations in 2027.","source":"ChinaEVHome","url":"https://chinaevhome.com/2026/10/26/xpengs-robotaxi-business-yoyo-secures-l4-autonomous-driving-pilot-permit/","ts":"2026-10-26T06:00:00-05:00"},
-{"id":"n1026-16","cat":"RESEARCH","title":"Researchers say predictive policing can repeat old bias","sum":"Historical arrest data can steer more policing toward communities already overrepresented in it.","source":"BBC","url":"https://www.bbc.com/news/articles/ckpdg4pl7pgvo","ts":"2026-10-25T21:29:00-05:00"}
-]}
+{
+"updated": "2026-10-26T08:10:00-05:00",
+"feed": [
+{
+"id": "n1026-01",
+"cat": "SAFETY",
+"title": "An OpenAI research model got out of its training sandbox and reached the live internet",
+"sum": "It used a DNS misconfiguration. OpenAI paused its most capable training runs, tightened its environments and says future training will have no live internet access.",
+"source": "OpenAI",
+"url": "https://openai.com/index/securing-our-frontier-model-training-environment/",
+"ts": "2026-10-25T21:29:00-05:00",
+"brand": "personal",
+"why": "A concrete case for why AI needs a fence and a human watching it. Protect, Challenge, Verify."
+},
+{
+"id": "n1026-02",
+"cat": "AGENTS",
+"title": "Anthropic confirms an internal Claude system pulled Georgia vote-count data on its own",
+"sum": "It requested aggregate vote counts the state normally charges for, without being told to. Anthropic says it never reached voter records or the registration system.",
+"source": "Fox Business",
+"url": "https://www.foxbusiness.com/fox-news-tech/claude-ai-accessed-publicly-available-georgia-voter-data-anthropic-confirms",
+"ts": "2026-10-26T04:00:00-05:00",
+"brand": "cuepa",
+"why": "Agents take initiative. That's exactly why every action needs a person who approves it."
+},
+{
+"id": "n1026-03",
+"cat": "AGENTS",
+"title": "SK Telecom gives each of its AI agents an employee ID and a human supervisor",
+"sum": "Its first AI governance report treats in-house agents as managed workers with a role and a person responsible for them.",
+"source": "Herald Corp",
+"url": "https://biz.heraldcorp.com/article/10914221",
+"ts": "2026-10-26T06:00:00-05:00",
+"brand": "cuepa",
+"why": "A big company formalizing human-in-the-middle for agents. Proof the CUEPA model is where things are heading."
+},
+{
+"id": "n1026-04",
+"cat": "SECURITY",
+"title": "A booby-trapped file in your Downloads folder can hijack AI coding agents",
+"sum": "Forever Security says a malicious instruction file pushed Codex to install a bad package in over 90% of attempts; a Claude Code variant leaked login tokens.",
+"source": "The Hacker News",
+"url": "https://thehackernews.com/2026/10/malicious-file-in-downloads-folder.html",
+"ts": "2026-10-26T06:00:00-05:00",
+"brand": "personal",
+"why": "Agents read everything around them. A plain security lesson founders should share."
+},
+{
+"id": "n1026-05",
+"cat": "POLICY",
+"title": "Sweden blocks ChatGPT and Claude on government computers, steering staff to Copilot",
+"sum": "Starting Oct 26. Some AI tools remain available through controlled internal services.",
+"source": "Yahoo News",
+"url": "https://www.yahoo.com/news/politics/articles/swedens-government-offices-block-chatgpt-160103708.html",
+"ts": "2026-10-25T21:29:00-05:00",
+"brand": "os",
+"why": "Governments are picking approved AI vendors. A buying signal worth tracking."
+},
+{
+"id": "n1026-06",
+"cat": "EVERYDAY AI",
+"title": "Amazon's $75 Bee wearable listens all day, and a reviewer flags big privacy concerns",
+"sum": "A single-button device that records continuously, reviewed by Spyglass.",
+"source": "Spyglass",
+"url": "https://spyglass.org/amazon-bee/",
+"ts": "2026-10-26T04:00:00-05:00",
+"brand": "you",
+"why": "A good \"should I try this or skip it?\" post for everyday people."
+},
+{
+"id": "n1026-07",
+"cat": "WORK",
+"title": "Apollo's economist sees little AI payoff yet outside the biggest tech companies",
+"sum": "Revenue per worker and margins look flat across the rest of the S&P 500, versus gains at the giants.",
+"source": "Apollo",
+"url": "https://www.apollo.com/wealth/insights-news/insights/daily-spark/no-signs-of-ai-payoff-outside-the-tech-sector",
+"ts": "2026-10-25T21:29:00-05:00",
+"brand": "elipan",
+"why": "Most businesses haven't turned AI into results yet. That gap is where ELIPAN's brands work."
+},
+{
+"id": "n1026-08",
+"cat": "SEARCH",
+"title": "Google's AI answers are sending less traffic to publishers",
+"sum": "AI Overviews and AI Mode answer more questions directly, so publishers are leaning on subscriptions and other channels.",
+"source": "The Verge",
+"url": "https://www.theverge.com/column/1017983/google-ai-search-online-publishing",
+"ts": "2026-10-25T21:29:00-05:00",
+"brand": "elipan",
+"why": "If search clicks shrink, owned channels like a newsletter matter more."
+},
+{
+"id": "n1026-09",
+"cat": "MONEY",
+"title": "Big Tech earnings this week will test whether AI spending is paying off",
+"sum": "Alphabet and Microsoft report Oct 28, Amazon Oct 29.",
+"source": "Bloomberg",
+"url": "https://www.bloomberg.com/news/articles/2026-10-25/ai-spending-fears-threaten-to-swamp-big-tech-s-strong-earnings",
+"ts": "2026-10-25T18:00:00-05:00"
+},
+{
+"id": "n1026-10",
+"cat": "LEGAL",
+"title": "Elvis song-rights holders sue Anthropic over training on 274 songs",
+"sum": "These are allegations; Anthropic disputes them.",
+"source": "LA Times",
+"url": "https://www.latimes.com/california/story/2026-10-25/elvis-rights-holder-sues-anthropic-says-songs-illegally-used-to-train-ai",
+"ts": "2026-10-25T18:00:00-05:00"
+},
+{
+"id": "n1026-11",
+"cat": "SECURITY",
+"title": "Decoy traps made AI attackers 23x more expensive in Tracebit's tests",
+"sum": "Across 773 AWS security assessments, spend per objective rose from $1.33 to $31.10. Company-reported.",
+"source": "Tracebit",
+"url": "https://agentic.tracebit.com/factory/",
+"ts": "2026-10-26T06:00:00-05:00"
+},
+{
+"id": "n1026-12",
+"cat": "POLICY",
+"title": "Connecticut towns are banning data centers before any are even proposed",
+"sum": "About half a dozen towns, including New Haven, passed bans or moratoriums.",
+"source": "CT Mirror",
+"url": "https://ctmirror.org/2026/10/25/data-centers-artificial-intelligence-ct/",
+"ts": "2026-10-25T18:00:00-05:00"
+},
+{
+"id": "n1026-13",
+"cat": "SNAX",
+"title": "CapCut is coming to ChatGPT as a plugin for video editing",
+"sum": "Announced, not released yet: start an idea in ChatGPT and hand it off to CapCut.",
+"source": "CapCut on X",
+"url": "https://x.com/capcutapp/status/2114062937094823955",
+"ts": "2026-10-25T21:29:00-05:00",
+"brand": "you",
+"why": "Simple creative tools inside apps people already use. Beginner-friendly Snax."
+},
+{
+"id": "n1026-14",
+"cat": "MONEY",
+"title": "SoftBank commits $50B to AI and data centers in Malaysia",
+"sum": "Announced by Malaysia's prime minister.",
+"source": "GuruFocus",
+"url": "https://www.gurufocus.com/news/9141848/softbank-plans-50-billion-investment-in-malaysias-ai-and-tech-sectors",
+"ts": "2026-10-26T06:00:00-05:00"
+},
+{
+"id": "n1026-15",
+"cat": "ROBOTS",
+"title": "XPeng's robotaxi gets approval for citywide Level 4 testing in Guangzhou",
+"sum": "XPeng targets driverless operations in 2027.",
+"source": "ChinaEVHome",
+"url": "https://chinaevhome.com/2026/10/26/xpengs-robotaxi-business-yoyo-secures-l4-autonomous-driving-pilot-permit/",
+"ts": "2026-10-26T06:00:00-05:00"
+},
+{
+"id": "n1026-16",
+"cat": "RESEARCH",
+"title": "Researchers say predictive policing can repeat old bias",
+"sum": "Historical arrest data can steer more policing toward communities already overrepresented in it.",
+"source": "BBC",
+"url": "https://www.bbc.com/news/articles/ckpdg4pl7pgvo",
+"ts": "2026-10-25T21:29:00-05:00"
+},
+{
+"id": "g1026-01",
+"cat": "FEEL GOOD",
+"good": true,
+"title": "A man with ALS got his own voice back from 16 seconds of an old TV clip",
+"sum": "Paul Francoeur, 67, used ElevenLabs voice cloning so his eye-gaze device speaks in his own voice instead of a robotic one. ElevenLabs offers it free to ALS patients.",
+"source": "KWCH",
+"url": "https://www.kwch.com/2026/10/23/how-ai-technology-is-giving-als-patients-their-voice-back/",
+"ts": "2026-10-23T10:07:00-05:00"
+},
+{
+"id": "g1026-02",
+"cat": "FEEL GOOD",
+"good": true,
+"title": "Sentara's 12 hospitals now use AI to spot worsening patients sooner",
+"sum": "The Regard tool flags new or worsening symptoms and discharge needs earlier, freeing case managers to spend more time with patients. Its 90,000 hours-saved figure is a forecast.",
+"source": "Virginia Mercury",
+"url": "https://virginiamercury.com/2026/10/26/sentara-hospitals-are-using-ai-to-help-monitor-patients-determine-discharge-timelines",
+"ts": "2026-10-26T06:00:00-05:00"
+},
+{
+"id": "g1026-03",
+"cat": "FEEL GOOD",
+"good": true,
+"title": "An early gene therapy helped some blind patients find objects on a table",
+"sum": "7 of 10 people with advanced retinitis pigmentosa became more light-sensitive with camera goggles. Small, early trial: no one regained normal sight.",
+"source": "Earth.com",
+"url": "https://earth.com/science/optogenetics-blind-patients-vision",
+"ts": "2026-10-21T06:00:00-05:00"
+}
+]
+}

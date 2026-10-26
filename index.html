@@ -61,6 +61,8 @@ body{margin:0}
 @media (max-width:720px){.m .bbmenu{left:0;right:auto}.m .wrow{grid-template-columns:minmax(0,1fr)!important;gap:8px!important}.m .wrow .wmeta{flex-direction:row!important;gap:12px!important}.m .hdrbtns .obtn{padding:0 12px}}
 .m .secgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
 @media (max-width:720px){.m .secgrid{grid-template-columns:minmax(0,1fr)}}
+.m .goodgrid{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:900px){.m .goodgrid{grid-template-columns:minmax(0,1fr)}}
 </style>
 <style>.m.played .scr{animation:none!important;color:var(--ink)!important}.m.played .scr::before{display:none!important}body{margin:0}</style></head><body>
 <template id="tpl">
@@ -211,6 +213,23 @@ body{margin:0}
 </aside>
 </div>
 
+<sc-if value="{{hasGood}}" hint-placeholder-val="{{true}}">
+<section style="border-top: 4px double var(--ink); margin-top: 12px; padding-top: 22px;">
+<span class="lbl" style="color: var(--ink);">FEEL GOOD · AI &amp; TECH DOING SOME GOOD</span>
+<h2 class="h" style="margin-top: 10px; font-size: 40px;">Feel good</h2>
+<p style="margin: 8px 0 0; font-size: 14px; color: var(--muted);">A few reasons to smile from this week.</p>
+<div class="goodgrid" style="display: grid; gap: 14px; margin: 16px 0 8px;">
+<sc-for list="{{goodRows}}" as="g" hint-placeholder-count="3">
+<article style="display: flex; flex-direction: column; gap: 8px; padding: 18px 20px; border-radius: 12px; background: var(--raised); border-left: 4px solid #8FAE8B;">
+<span class="lbl">☀ {{g.age}}</span>
+<a href="{{g.url}}" target="_blank" rel="noopener" style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 19px; line-height: 1.25; text-decoration: none; color: var(--ink);">{{g.title}}</a>
+<p style="margin: 0; font-size: 14px; line-height: 1.5; color: var(--ink2);">{{g.sum}}</p>
+<a href="{{g.url}}" target="_blank" rel="noopener" class="lbl" style="margin-top: auto;">{{g.source}} ↗</a>
+</article>
+</sc-for>
+</div>
+</section>
+</sc-if>
 <div style="border-top: 4px double var(--ink); margin-top: 12px; padding-top: 22px; display: flex; flex-direction: column;">
 <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--ink);">
 <div>
@@ -716,8 +735,8 @@ class Component extends DCLogic {
     TOPICS = TOPICS.filter(function (t) { var h = hoursAgo(t); return h >= -1 && h <= (t.ours ? 168 : 24); });
     function fmtFeed(t) { return new Intl.DateTimeFormat('en-US', { timeZone: 'America/Chicago', month: 'short', day: 'numeric' }).format(new Date(t.ts)).toUpperCase(); }
     function ageLabel(t) { if (t.ours) return 'OUR NEWS · NEW'; return ageLabel2(t); }
-    function ageLabel2(t) { var h = Math.floor(hoursAgo(t)); return h < 1 ? 'JUST IN' : (h + 'H AGO'); }
-    FEED = FEED.filter(function (t) { var h = hoursAgo(t); return h >= -1 && h <= 24; });
+    function ageLabel2(t) { var h = Math.floor(hoursAgo(t)); return h < 1 ? 'JUST IN' : h < 24 ? (h + 'H AGO') : (Math.floor(h / 24) + (h < 48 ? ' DAY AGO' : ' DAYS AGO')); }
+    FEED = FEED.filter(function (t) { var h = hoursAgo(t); return h >= -1 && h <= (t.good ? 168 : 24); });
     var seenT = {}; TOPICS.forEach(function (t) { seenT[t.title] = 1; });
     var fromWire = FEED.filter(function (t) { return t.brand && !seenT[t.title]; }).map(function (t) { return { id: t.id, pillar: 'insight', brand: t.brand, ts: t.ts, date: fmtFeed(t), title: t.title, why: t.why || t.sum, source: t.source, url: t.url, draft: '', headline: t.title }; });
     TOPICS = TOPICS.concat(fromWire); ALL_TOPICS = ALL_TOPICS.concat(fromWire);
@@ -919,7 +938,8 @@ class Component extends DCLogic {
     ];
     var feedMode = s.feedMode || 'all';
     var feedAll = FEED.slice().sort(function (a, b) { return (b.brand ? 1 : 0) - (a.brand ? 1 : 0) || hoursAgo(a) - hoursAgo(b); });
-    var feedRows = feedAll.filter(function (t) { return !t.brand; }).map(function (t) {
+    var goodRows = FEED.filter(function (t) { return t.good; }).sort(function (a, b) { return hoursAgo(a) - hoursAgo(b); }).slice(0, 3).map(function (t) { return { title: t.title, sum: t.sum, url: t.url, source: t.source, age: ageLabel(t) }; });
+    var feedRows = feedAll.filter(function (t) { return !t.brand && !t.good; }).map(function (t) {
       var b = t.brand ? BR[t.brand] : null; var tt = b ? tone(b.c) : null;
       return { title: t.title, sum: t.sum, source: t.source, url: t.url, cat: t.cat, age: ageLabel(t), flagged: !!b, why: t.why,
         brandUpper: b ? b.name.toUpperCase() : '', dot: b ? 'width: 9px; height: 9px; border-radius: 50%; flex: none; background: ' + tt[1] + ';' : '',
@@ -949,7 +969,7 @@ class Component extends DCLogic {
       isEngage: step === 'engage',
       todayLong: todayLong, todayShort: todayShort,
       todaySummary: TOPICS.length + ' stories in Syntax & Snax. ' + doneTotal + ' of ' + goalTotal + ' weekly posts done across ' + activeIds.length + ' brands.' + (behind ? ' ' + behind + ' brands still need a post.' : ''),
-      feedRows: feedRows, feedCount: feedRows.length, flaggedCount: flaggedCount, noFeed: feedRows.length === 0,
+      goodRows: goodRows, hasGood: goodRows.length > 0, feedRows: feedRows, feedCount: feedRows.length, flaggedCount: flaggedCount, noFeed: feedRows.length === 0,
       feedAllStr: feedMode === 'all' ? 'true' : 'false', feedFlagStr: feedMode === 'flag' ? 'true' : 'false',
       feedShowAll: function () { set({ feedMode: 'all' }); }, feedShowFlag: function () { set({ feedMode: 'flag' }); },
       allBrands: function () { set({ boardBrand: null, bbOpen: false }); },
