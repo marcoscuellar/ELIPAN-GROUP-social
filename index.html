@@ -212,16 +212,12 @@ body{margin:0}
 <div style="border-top: 4px double var(--ink); margin-top: 12px; padding-top: 22px; display: flex; flex-direction: column;">
 <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--ink);">
 <div>
-<span class="live"><i aria-hidden="true"></i>THE WIRE · ALL AI &amp; TECH NEWS · LAST 24 HOURS</span>
-<h2 class="h" style="margin-top: 10px; font-size: 40px;">Everything today</h2>
-<p style="margin: 8px 0 0; font-size: 14px; color: var(--muted);">{{feedCount}} stories · {{flaggedCount}} flagged for a brand. Flagged stories come first.</p>
-</div>
-<div role="group" aria-label="Filter the wire" style="display: flex; gap: 6px;">
-<button type="button" class="opt" onClick="{{feedShowAll}}" aria-pressed="{{feedAllStr}}">ALL {{feedCount}}</button>
-<button type="button" class="opt" onClick="{{feedShowFlag}}" aria-pressed="{{feedFlagStr}}">FLAGGED FOR BRANDS {{flaggedCount}}</button>
+<span class="live"><i aria-hidden="true"></i>THE WIRE · THE REST OF TODAY'S AI &amp; TECH NEWS</span>
+<h2 class="h" style="margin-top: 10px; font-size: 40px;">Also today</h2>
+<p style="margin: 8px 0 0; font-size: 14px; color: var(--muted);">{{feedCount}} more stories from the last 24 hours that didn’t make the board above.</p>
 </div>
 </div>
-<sc-if value="{{noFeed}}" hint-placeholder-val="{{false}}"><p style="margin: 0; padding: 18px 0; color: var(--muted);">No AI or tech news in the last 24 hours yet.</p></sc-if>
+<sc-if value="{{noFeed}}" hint-placeholder-val="{{false}}"><p style="margin: 0; padding: 18px 0; color: var(--muted);">Everything from the last 24 hours is already on the board above.</p></sc-if>
 <sc-for list="{{feedRows}}" as="w" hint-placeholder-count="8">
 <div class="wrow" style="display: grid; grid-template-columns: 92px minmax(0, 1fr) minmax(180px, 240px); gap: 6px 24px; align-items: start; padding: 16px 0; border-bottom: 1px solid var(--line2);">
 <div class="wmeta" style="display: flex; flex-direction: column; gap: 6px;"><span class="lbl" style="color: var(--ink);">{{w.age}}</span><span class="lbl">{{w.cat}}</span></div>
@@ -920,7 +916,7 @@ class Component extends DCLogic {
     ];
     var feedMode = s.feedMode || 'all';
     var feedAll = FEED.slice().sort(function (a, b) { return (b.brand ? 1 : 0) - (a.brand ? 1 : 0) || hoursAgo(a) - hoursAgo(b); });
-    var feedRows = feedAll.filter(function (t) { return (feedMode === 'all' || t.brand) && (!BB || t.brand === BB); }).map(function (t) {
+    var feedRows = feedAll.filter(function (t) { return !t.brand; }).map(function (t) {
       var b = t.brand ? BR[t.brand] : null; var tt = b ? tone(b.c) : null;
       return { title: t.title, sum: t.sum, source: t.source, url: t.url, cat: t.cat, age: ageLabel(t), flagged: !!b, why: t.why,
         brandUpper: b ? b.name.toUpperCase() : '', dot: b ? 'width: 9px; height: 9px; border-radius: 50%; flex: none; background: ' + tt[1] + ';' : '',
@@ -950,7 +946,7 @@ class Component extends DCLogic {
       isEngage: step === 'engage',
       todayLong: todayLong, todayShort: todayShort,
       todaySummary: TOPICS.length + ' stories in Syntax & Snax. ' + doneTotal + ' of ' + goalTotal + ' weekly posts done across ' + activeIds.length + ' brands.' + (behind ? ' ' + behind + ' brands still need a post.' : ''),
-      feedRows: feedRows, feedCount: FEED.length, flaggedCount: flaggedCount, noFeed: feedRows.length === 0,
+      feedRows: feedRows, feedCount: feedRows.length, flaggedCount: flaggedCount, noFeed: feedRows.length === 0,
       feedAllStr: feedMode === 'all' ? 'true' : 'false', feedFlagStr: feedMode === 'flag' ? 'true' : 'false',
       feedShowAll: function () { set({ feedMode: 'all' }); }, feedShowFlag: function () { set({ feedMode: 'flag' }); },
       allBrands: function () { set({ boardBrand: null, bbOpen: false }); },
