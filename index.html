@@ -63,6 +63,7 @@ body{margin:0}
 @media (max-width:720px){.m .secgrid{grid-template-columns:minmax(0,1fr)}}
 .m .goodgrid{grid-template-columns:repeat(3,minmax(0,1fr))}
 @media (max-width:900px){.m .goodgrid{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:720px){.m main [style*="span 2"]{grid-column:auto!important}.m main aside{border-left:0!important;padding-left:0!important}.m main{padding-left:16px!important;padding-right:16px!important}.m header{padding-left:16px!important;padding-right:16px!important}}
 </style>
 <style>.m.played .scr{animation:none!important;color:var(--ink)!important}.m.played .scr::before{display:none!important}body{margin:0}</style></head><body>
 <template id="tpl">
@@ -120,7 +121,7 @@ body{margin:0}
 </nav>
 </sc-if>
 <div style="max-width: 1280px; margin: 12px auto 0; display: flex; align-items: center; gap: 14px; border-top: 1px solid var(--line2); padding-top: 10px;">
-<span class="live"><i aria-hidden="true"></i>LIVE</span>
+<span class="live"><i aria-hidden="true"></i>TODAY</span>
 <span class="lbl" style="flex: none;">UPDATED {{updatedAt}}</span>
 <div class="tick" style="flex: 1; min-width: 0;" aria-label="Latest stories">
 <div>
@@ -146,7 +147,7 @@ body{margin:0}
 
 <div style="padding: 30px 0 22px; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center;">
 <h1 class="h" aria-label="ELIPAN Syntax and Snax" style="display: flex; flex-direction: column; align-items: center; gap: 0.06em; line-height: 0.9; letter-spacing: -0.035em;"><span aria-hidden="true" style="font-size: clamp(30px, 9.5vw, 128px); white-space: nowrap;"><span class="scr s3" style="--d: 0.46s;">E</span><span class="scr s2" style="--d: 0.63s;">L</span><span class="scr s3" style="--d: 0.60s;">I</span><span class="scr s3" style="--d: 0.61s;">P</span><span class="scr s3" style="--d: 0.75s;">A</span><span class="scr s1" style="--d: 0.90s;">N</span></span><span aria-hidden="true" style="font-size: clamp(30px, 9.5vw, 128px); white-space: nowrap;"><span class="scr s1" style="--d: 0.71s;">S</span><span class="scr s3" style="--d: 0.69s;">Y</span><span class="scr s3" style="--d: 0.90s;">N</span><span class="scr s2" style="--d: 1.06s;">T</span><span class="scr s3" style="--d: 1.04s;">A</span><span class="scr s3" style="--d: 1.11s;">X</span> <span class="scr s3" style="--d: 1.02s;">&amp;</span> <span class="scr s1" style="--d: 1.11s;">S</span><span class="scr s1" style="--d: 1.21s;">N</span><span class="scr s2" style="--d: 1.38s;">A</span><span class="scr s3" style="--d: 1.38s;">X</span></span></h1>
-<span class="lbl">TODAY’S BOARD · CREDIBLE STORIES FROM THE LAST 24 HOURS ONLY, MATCHED TO A BRAND · BRIEF FILED 4:57 AM</span>
+<span class="lbl">TODAY’S BOARD · CREDIBLE STORIES FROM THE LAST 24 HOURS ONLY, MATCHED TO A BRAND · {{briefFiled}}</span>
 <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 6px;">
 <button type="button" class="obtn" onClick="{{startBlank}}">START BLANK</button>
 
@@ -284,7 +285,7 @@ body{margin:0}
 
 <div style="margin-top: 28px; padding: 14px 0; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px;">
 <span style="font-size: 14px; color: var(--ink2);"><span class="lbl" style="color: var(--ink);">SOCIAL STATS ·</span> Not connected yet. Connect LinkedIn and Instagram to see followers, impressions and engagement for every brand.</span>
-<button type="button" class="obtn">CONNECT ACCOUNTS</button>
+<button type="button" class="obtn" disabled="true" title="Coming soon">CONNECT ACCOUNTS · SOON</button>
 </div>
 </section>
 </sc-if>
@@ -317,7 +318,7 @@ body{margin:0}
 </sc-for>
 </div>
 </div>
-<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px;">
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 16px;">
 <sc-for list="{{topics}}" as="t" hint-placeholder-count="5">
 <article class="topic">
 <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
@@ -362,7 +363,7 @@ body{margin:0}
 <a href="{{topicUrl}}" target="_blank" rel="noopener" style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--muted);">{{topicSource}} ↗</a>
 </div>
 <sc-if value="{{autoDrafted}}" hint-placeholder-val="{{true}}">
-<p style="margin: 0; font-size: 14px; line-height: 1.5; color: var(--ink2);">✦ AI drafted this from the story. Edit it so it sounds like you.</p>
+<p style="margin: 0; font-size: 14px; line-height: 1.5; color: var(--ink2);">✦ Starter draft from the story. Edit it so it sounds like you.</p>
 </sc-if>
 </sc-if>
 <sc-if value="{{noTopic}}" hint-placeholder-val="{{false}}">
@@ -509,7 +510,7 @@ body{margin:0}
 <div style="flex: 1 1 240px; display: flex; flex-direction: column; gap: 12px; padding: 20px; border: 1px solid var(--line); border-radius: 14px;">
 <span class="lbl">SCHEDULE</span>
 <div style="display: flex; gap: 8px;">
-<label style="flex: 1; display: flex; flex-direction: column; gap: 6px;"><span class="lbl">DAY</span><input type="date" class="field" value="{{date}}" onInput="{{onDate}}" style="padding: 10px;"></label>
+<label style="flex: 1; display: flex; flex-direction: column; gap: 6px;"><span class="lbl">DAY</span><input type="date" class="field" min="{{todayIso}}" value="{{date}}" onInput="{{onDate}}" style="padding: 10px;"></label>
 <label style="flex: 1; display: flex; flex-direction: column; gap: 6px;"><span class="lbl">TIME</span><input type="time" class="field" value="{{time}}" onInput="{{onTime}}" style="padding: 10px;"></label>
 </div>
 <button type="button" class="wbtn" onClick="{{schedule}}">SCHEDULE</button>
@@ -648,13 +649,16 @@ body{margin:0}
 </template><div id="root"></div>
 <script>
 var __render;
-class DCLogic { setState(o){ this.state = Object.assign({}, this.state, o); if (__render) __render(); } }
+var STORE_KEY = 'elipan_social_v1', SKIP = { menu: 1, bbOpen: 1, navOpen: 1, scheduledNow: 1, justPosted: 1 };
+function loadState(){ try { var d = JSON.parse(localStorage.getItem(STORE_KEY) || 'null'); return d && typeof d === 'object' ? d : {}; } catch (e) { return {}; } }
+function saveState(st){ try { var o = {}; Object.keys(st).forEach(function (k) { if (!SKIP[k] && typeof st[k] !== 'function') o[k] = st[k]; }); localStorage.setItem(STORE_KEY, JSON.stringify(o)); } catch (e) {} }
+class DCLogic { setState(o){ this.state = Object.assign({}, this.state, o); saveState(this.state); if (__render) __render(); } }
 
 class Component extends DCLogic {
   renderVals() {
     var s = this.state || {};
     var self = this;
-    var light = s.light !== false;
+    var light = s.light === undefined ? !(window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) : s.light !== false;
     function set(o) { self.setState(o); }
     var LIGHT = { '#F9C933': ['#7A5A00', '#F9C933', '#000000'], '#2DD4BF': ['#0F766E', '#2DD4BF', '#000000'], '#FAE268': ['#232527', '#FAE268', '#000000'], '#A9C4A5': ['#4A6B47', '#8FAE8B', '#0A0A0A'], '#FFFFFF': ['#232527', '#232527', '#FFFFFF'], '#9AA0A8': ['#4A4F57', '#4A4F57', '#FFFFFF'], '#3C8692': ['#2C6670', '#3C8692', '#FFFFFF'], '#FFE14D': ['#6E5A00', '#FFE14D', '#181A1E'] };
     function tone(c) { return light ? LIGHT[c] : [c, c, '#000000']; }
@@ -731,12 +735,16 @@ class Component extends DCLogic {
     var FEED = ((typeof window !== 'undefined' && window.__NEWS && window.__NEWS.feed) || [{"id": "n1023-01", "cat": "AGENTS", "title": "Banks scramble to control third-party AI agents inside customer accounts", "sum": "Morgan Stanley and Bank of America are among banks trying to tell whether an agent's action is really what the customer asked for.", "source": "Axios", "url": "https://www.axios.com/2026/10/22/ai-agents-banks-unauthorized-accounts-access", "ts": "2026-10-22T23:44:00-05:00", "brand": "cuepa", "why": "Who approved this action? is now a bank-level problem. CUEPA's human-in-the-middle answer fits small businesses too."}, {"id": "n1023-02", "cat": "SAFETY", "title": "Outside testers found ways around OpenAI's monitor for its own AI agents", "sum": "METR and Redwood spent three weeks inside OpenAI. Their 61-page report lists six evasion paths; OpenAI says it patched the findings that affected production.", "source": "Redwood Research", "url": "https://blog.redwoodresearch.org/p/red-teaming-openais-internal-agent", "ts": "2026-10-22T18:00:00-05:00", "brand": "personal", "why": "Even the biggest lab needed outsiders to check its agent watchdog. Protect, Challenge, Verify in real life."}, {"id": "n1023-03", "cat": "SECURITY", "title": "China-linked hackers used an AI agent system in the ConnectWise breach", "sum": "Microsoft says Storm-0940 ran 2,900 password attempts a minute against 2,250 Microsoft 365 tenants using the ARTEX framework.", "source": "Microsoft Security", "url": "https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/", "ts": "2026-10-22T23:44:00-05:00", "brand": "elipan", "why": "Small businesses run on tools like ConnectWise. A plain-language security post earns trust."}, {"id": "n1023-04", "cat": "HEALTH AI", "title": "Microsoft's diagnostic AI got 83% of hard cases right versus 36% for doctors alone", "sum": "Published in Science. Clinical testing at Beth Israel Deaconess is set to start within two months. TechCrunch notes much of the gain may come from the underlying models.", "source": "TechCrunch", "url": "https://techcrunch.com/2026/10/22/microsofts-mustafa-suleyman-says-its-ai-outperforms-doctors-on-hard-cases-as-he-chases-medical-superintelligence/", "ts": "2026-10-22T18:00:00-05:00"}, {"id": "n1023-05", "cat": "JOBS", "title": "Reuters counts about 102,800 AI-linked layoffs across 31 companies in a year", "sum": "HSBC (20,000) and Amazon (16,000) make up 35%; seven banks account for about 39%.", "source": "Reuters via Investing.com", "url": "https://www.investing.com/news/stock-market-news/factboxcompanies-cutting-jobs-as-investments-shift-toward-ai-4965744", "ts": "2026-10-22T18:00:00-05:00", "brand": "hires", "why": "Job seekers are anxious about AI cuts. Elipan Hires can be the calm, practical voice."}, {"id": "n1023-06", "cat": "WORK AI", "title": "Uber rolls ChatGPT out to 30,000+ employees after a 1,000-person pilot", "sum": "Connected to Google Drive and Slack.", "source": "OpenAI", "url": "https://openai.com/index/uber-chatgpt-work-rollout/", "ts": "2026-10-22T18:00:00-05:00", "brand": "os", "why": "Company-wide AI rollouts are a buying signal. Track who pilots, then scales."}, {"id": "n1023-07", "cat": "WORK AI", "title": "Volkswagen puts Microsoft Copilot in front of 330,000 staff", "sum": "Over 300,000 use it monthly, and 26,000 agents went live in the past month.", "source": "American Bazaar", "url": "https://americanbazaaronline.com/2026/10/22/volkswagen-expands-with-microsoft-copilot-as-salary-freeze-for-660000-workers-reportedly-looms-490570", "ts": "2026-10-22T18:00:00-05:00"}, {"id": "n1023-08", "cat": "EVERYDAY AI", "title": "Claude makes auto mode the default for paid plans starting next week", "sum": "Automated checks block risky actions, and users can switch back to approving each step.", "source": "Claude on X", "url": "https://x.com/claudeai/status/2113360845409583307", "ts": "2026-10-22T23:44:00-05:00", "brand": "you", "why": "A good beginner explainer: what auto mode does, and how to keep approving things yourself."}, {"id": "n1023-09", "cat": "SECURITY", "title": "1Password launches 1Password for Agents and passes $500M in yearly revenue", "sum": "Built with Anthropic and OpenAI. The company says agent usage is up 500% year over year.", "source": "BetaKit", "url": "https://betakit.com/1password-tops-500-million-usd-arr-on-the-back-of-accelerating-ai-demand/", "ts": "2026-10-22T18:00:00-05:00", "brand": "cuepa", "why": "Agents need keys. Who holds them, and who approves their use, is the CUEPA question."}, {"id": "n1023-10", "cat": "VERIFY", "title": "Anthropic used Claude to formally verify security in 123 open-source libraries", "sum": "It found bugs that had gone unnoticed for years.", "source": "Anthropic", "url": "https://www.anthropic.com/research/formal-verification", "ts": "2026-10-22T23:44:00-05:00"}, {"id": "n1023-11", "cat": "STANDARDS", "title": "Agent Skills, Open Responses, OpenEnv and OpenSandbox join the Agentic AI Foundation", "sum": "Anthropic's Agent Skills alone counts 280 million installs since December 2025.", "source": "Linux Foundation", "url": "https://www.linuxfoundation.org/press/agentic-ai-foundation-announces-four-new-projects-agent-skills-open-responses-openenv-and-opensandbox", "ts": "2026-10-22T18:00:00-05:00"}, {"id": "n1023-12", "cat": "SNAX", "title": "Canva releases its first image-generation model to all users", "sum": "Pitched as a cheaper, more customizable option inside Canva.", "source": "TechCrunch", "url": "https://techcrunch.com/2026/10/22/canva-releases-its-first-image-generation-model/", "ts": "2026-10-22T18:00:00-05:00", "brand": "you", "why": "Free, beginner-friendly and already in an app people use. Worth trying, not hyping."}, {"id": "n1023-13", "cat": "SNAX", "title": "Ideogram's first vector model turns text prompts into editable SVGs", "sum": "It can also convert existing images into vectors, with type and gradients.", "source": "Ideogram on X", "url": "https://x.com/ideogram_ai/status/2113300317584720259", "ts": "2026-10-22T23:44:00-05:00"}, {"id": "n1023-14", "cat": "SNAX", "title": "HeyGen launches Video 1, its first general-purpose video model", "sum": "It ranked first for text-to-video in a blind Artificial Analysis test.", "source": "HeyGen on X", "url": "https://x.com/HeyGen/status/2113325916181102761", "ts": "2026-10-22T23:44:00-05:00"}, {"id": "n1023-15", "cat": "MONEY", "title": "OpenAI nears an up-to-$30B round at a $1.25 trillion valuation", "sum": "Led by UAE investors and Coatue. That's down from the $1.4 trillion it pitched earlier this month.", "source": "CNBC", "url": "https://www.cnbc.com/2026/10/22/openai-funding-round-uae-investors.html", "ts": "2026-10-22T18:00:00-05:00"}, {"id": "n1023-16", "cat": "MONEY", "title": "DeepSeek reportedly raises about $15B led by Tencent and CATL", "sum": "Two days after a US order to remove DeepSeek tech from federal agencies.", "source": "TechCrunch", "url": "https://techcrunch.com/2026/10/22/deepseek-reportedly-raises-15b-days-after-us-restrictions/", "ts": "2026-10-22T18:00:00-05:00"}, {"id": "n1023-17", "cat": "POLICY", "title": "US Treasury proposes limits on outbound AI investment", "sum": "Covers US investments over $50,000 in China, Russia, North Korea, Iran and Cuba in AI, supercomputing and biotech.", "source": "AP", "url": "https://apnews.com/article/treasury-china-tech-investments-rule-b742c292ff8eb19e6a4c8cf03d4d66b9", "ts": "2026-10-22T18:00:00-05:00"}, {"id": "n1023-18", "cat": "TALENT", "title": "WSJ: OpenAI fired three safety researchers over Signal chats", "sum": "OpenAI calls it a breach of trust; the researchers dispute that account.", "source": "Wall Street Journal", "url": "https://www.wsj.com/tech/ai/the-signal-chats-that-cost-openai-researchers-their-jobs-594c5853", "ts": "2026-10-22T23:44:00-05:00"}, {"id": "n1023-19", "cat": "BROWSERS", "title": "Arc browser shuts down December 22 as its maker focuses on the AI browser Dia", "sum": "", "source": "Arc on X", "url": "https://x.com/arcinternet/status/2113301454597640570", "ts": "2026-10-22T23:44:00-05:00"}, {"id": "n1023-20", "cat": "RESEARCH", "title": "Study: plain retrieval beat agent memory systems in 6 of 7 tests", "sum": "The simple baseline was also 5.1x faster than the next system.", "source": "Hugging Face Papers", "url": "https://huggingface.co/papers/2610.30755", "ts": "2026-10-22T23:44:00-05:00"}]).slice();
     var NOW24 = new Date();
     function hoursAgo(t) { return (NOW24 - new Date(t.ts)) / 3600000; }
+    var NEWS_UP = (typeof window !== 'undefined' && window.__NEWS && window.__NEWS.updated) ? new Date(window.__NEWS.updated) : null;
+    var REF = NEWS_UP && NEWS_UP < NOW24 ? NEWS_UP : NOW24;
+    function briefAge(t) { return (REF - new Date(t.ts)) / 3600000; }
+    var TODAY_ISO = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Chicago' }).format(NOW24);
     var ALL_TOPICS = TOPICS;
-    TOPICS = TOPICS.filter(function (t) { var h = hoursAgo(t); return h >= -1 && h <= (t.ours ? 168 : 24); });
+    TOPICS = TOPICS.filter(function (t) { var h = briefAge(t); return h >= -1 && h <= (t.ours ? 168 : 30); });
     function fmtFeed(t) { return new Intl.DateTimeFormat('en-US', { timeZone: 'America/Chicago', month: 'short', day: 'numeric' }).format(new Date(t.ts)).toUpperCase(); }
     function ageLabel(t) { if (t.ours) return 'OUR NEWS · NEW'; return ageLabel2(t); }
     function ageLabel2(t) { var h = Math.floor(hoursAgo(t)); return h < 1 ? 'JUST IN' : h < 24 ? (h + 'H AGO') : (Math.floor(h / 24) + (h < 48 ? ' DAY AGO' : ' DAYS AGO')); }
-    FEED = FEED.filter(function (t) { var h = hoursAgo(t); return h >= -1 && h <= (t.good ? 168 : 24); });
+    FEED = FEED.filter(function (t) { var h = briefAge(t); return h >= -1 && h <= (t.good ? 168 : 30); });
     var seenT = {}; TOPICS.forEach(function (t) { seenT[t.title] = 1; });
     var fromWire = FEED.filter(function (t) { return t.brand && !seenT[t.title]; }).map(function (t) { return { id: t.id, pillar: 'insight', brand: t.brand, ts: t.ts, date: fmtFeed(t), title: t.title, why: t.why || t.sum, source: t.source, url: t.url, draft: '', headline: t.title }; });
     TOPICS = TOPICS.concat(fromWire); ALL_TOPICS = ALL_TOPICS.concat(fromWire);
@@ -980,7 +988,9 @@ class Component extends DCLogic {
       allBrandsStyle: s.boardBrand ? '' : 'background: var(--swap); color: var(--swap-ink); border-color: var(--swap);',
       boardBrandName: s.boardBrand ? BR[s.boardBrand].name : '',
       kpis: kpis, todayFull: todayFull, issueNo: issueNo, lead: homeTopics[0] || {}, hasLead: homeTopics.length > 0, noLead: homeTopics.length === 0, seconds: homeTopics.slice(1, 1 + nSec), mores: homeTopics.slice(1 + nSec), noMores: homeTopics.length <= 1 + nSec,
-      ticker: (function () { var r = FEED.map(function (t) { var b = t.brand ? BR[t.brand] : null; return { title: t.title, brandUpper: b ? b.name.toUpperCase() : t.cat, age: ageLabel(t), ageStyle: hoursAgo(t) < 3 ? 'color: var(--bad);' : '', dot: 'width: 9px; height: 9px; border-radius: 50%; display: inline-block; background: ' + (b ? tone(b.c)[1] : 'var(--muted)') + ';' }; }); return r.concat(r); })(), updatedAt: fmtD({ hour: 'numeric', minute: '2-digit' }).toUpperCase() + ' CT', brandRows: brandRows, homeTopics: homeTopics, postedList: postedList, noPosted: postedList.length === 0,
+      ticker: (function () { var r = FEED.map(function (t) { var b = t.brand ? BR[t.brand] : null; return { title: t.title, brandUpper: b ? b.name.toUpperCase() : t.cat, age: ageLabel(t), ageStyle: hoursAgo(t) < 3 ? 'color: var(--bad);' : '', dot: 'width: 9px; height: 9px; border-radius: 50%; display: inline-block; background: ' + (b ? tone(b.c)[1] : 'var(--muted)') + ';' }; }); return r.concat(r); })(), updatedAt: NEWS_UP ? fmtD({ month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }, NEWS_UP).toUpperCase() + ' CT' : 'NO BRIEF LOADED',
+      briefFiled: NEWS_UP ? 'BRIEF FILED ' + fmtD({ month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }, NEWS_UP).toUpperCase() : 'NO BRIEF LOADED YET',
+      todayIso: TODAY_ISO, brandRows: brandRows, homeTopics: homeTopics, postedList: postedList, noPosted: postedList.length === 0,
       justPosted: !!s.justPosted,
       markPosted: function () { try { navigator.clipboard && navigator.clipboard.writeText(draft); } catch (e) {} set({ justPosted: true, posted: [{ brand: bid, channel: channel, pillar: pillar, xp: xpNow, title: (headline || draft.split('\n')[0] || 'New post'), ts: Date.now() }].concat(s.posted || []) }); },
       commentsToday: commentsToday, streak: commentsToday >= 3 ? 1 : 0, points: points, prompts: prompts,
@@ -1011,7 +1021,7 @@ class Component extends DCLogic {
       startBlank: function () { set({ topic: null, pillar: null, blank: true, step: 'write', draft: '', copyOk: false, designOk: false, headline: null }); },
       hasTopic: !!topic, noTopic: !topic, topicTitle: topic ? topic.title : '', topicWhy: topic ? topic.why : '', topicSource: topic ? topic.source : '', topicUrl: topic ? topic.url : '#', topicDate: topic ? topic.date : '',
       autoDrafted: !!topic && draft === topic.draft,
-      draftLabel: topic ? '✦ REDRAFT FROM STORY' : '✦ DRAFT WITH AI',
+      draftLabel: topic ? '✦ RESET TO STORY DRAFT' : '✦ START A DRAFT',
       draftPlaceholder: topic ? 'Tap Redraft from story, or write your own take.' : 'Write here, or tap Draft with AI.',
       changeStory: function () { set({ step: 'home' }); },
       draft: draft, charCount: draft.length.toLocaleString(),
@@ -1048,12 +1058,13 @@ class Component extends DCLogic {
       thumb: 'flex: none; width: 96px; height: 120px; border-radius: 4px; background: ' + bg + '; padding: 10px; box-sizing: border-box; overflow: hidden;',
       thumbText: 'font-family: Archivo, sans-serif; font-weight: 900; font-size: 11px; line-height: 1; text-transform: uppercase; color: ' + ink + ';',
       draftPreview: draft.length > 260 ? draft.slice(0, 260) + '…' : draft,
-      date: s.date || '2026-10-19', time: s.time || '08:30',
+      date: s.date || TODAY_ISO, time: s.time || '08:30',
       onDate: function (e) { set({ date: e.target.value }); }, onTime: function (e) { set({ time: e.target.value }); },
       justScheduled: !!s.scheduledNow,
       schedule: function () {
+        if ((s.date || TODAY_ISO) < TODAY_ISO) { window.alert('Pick today or a future date.'); return; }
         var title = (headline || draft.split('\n')[0] || 'New post');
-        set({ scheduledNow: true, sched: [{ brand: bid, pillar: pillar, xp: xpNow, channel: channel, when: (s.date || '2026-10-19') + ' · ' + (s.time || '08:30') + ' · ' + B.name.toUpperCase() + (isIG ? ' · INSTAGRAM' : ''), title: title }].concat(s.sched || []) });
+        set({ scheduledNow: true, sched: [{ brand: bid, pillar: pillar, xp: xpNow, channel: channel, when: (s.date || TODAY_ISO) + ' · ' + (s.time || '08:30') + ' · ' + B.name.toUpperCase() + (isIG ? ' · INSTAGRAM' : ''), title: title }].concat(s.sched || []) });
       },
       restart: function () { set({ step: 'home', topic: null, pillar: null, draft: '', copyOk: false, designOk: false, headline: null, scheduledNow: false, blank: false }); },
       upcoming: upcoming,
@@ -1083,7 +1094,7 @@ class Component extends DCLogic {
 }
 
 (function(){
-  var comp = new Component(); comp.state = {};
+  var comp = new Component(); comp.state = loadState();
   var tpl = document.getElementById('tpl'), root = document.getElementById('root'), played = false;
   setTimeout(function(){ played = true; }, 3200);
   function get(sc,p){ return p.split('.').reduce(function(o,k){ return o==null?undefined:o[k]; }, sc); }
@@ -1112,12 +1123,13 @@ class Component extends DCLogic {
     parent.appendChild(el);
   }
   __render = function(){
-    var ae=document.activeElement, fid=ae&&ae.id, s0=ae&&ae.selectionStart, s1=ae&&ae.selectionEnd, y=window.scrollY;
+    var ae=document.activeElement, fid=ae&&ae.id, FQ='button,a[href],input,textarea,select', fidx=(ae&&root.contains(ae))?Array.prototype.indexOf.call(root.querySelectorAll(FQ),ae):-1, s0=ae&&ae.selectionStart, s1=ae&&ae.selectionEnd, y=window.scrollY;
     var vals = comp.renderVals(), frag=document.createDocumentFragment();
     tpl.content.childNodes.forEach(function(n){ walk(n,vals,frag); });
     root.replaceChildren(frag);
     if(played){ var r=root.querySelector('.m'); if(r) r.classList.add('played'); }
     if(fid){ var f=document.getElementById(fid); if(f){ f.focus(); try{ f.setSelectionRange(s0,s1); }catch(e){} } }
+    else if(fidx>-1){ var fl=root.querySelectorAll(FQ); var g=fl[Math.min(fidx,fl.length-1)]; if(g) g.focus({preventScroll:true}); }
     window.scrollTo(0,y);
   };
   __render();
